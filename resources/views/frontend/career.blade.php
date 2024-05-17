@@ -39,7 +39,7 @@
                     <h4>Permanent</h4>
                     <p>Etiam at ligula ut diam maximus semper a nec ligula. Donec rhoncus augue dui, a euismod erat
                         rutrum eget. Nullam ut neque eget orci gravida pharetra.</p>
-                    <a href="career-list.html" class="banner-btn">View All Jobs</a>
+                    <a href="{{route('frontend.careerList')}}" class="banner-btn">View All Jobs</a>
                 </div>
             </div>
 

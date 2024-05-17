@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Core\CareerInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class IndexController
 {
+    private $careerInterface;
+    public function __construct(CareerInterface $careerInterface)
+    {
+        $this->careerInterface = $careerInterface;
+    }
     public function index()
     {
         return view('frontend.index');
@@ -52,6 +58,14 @@ class IndexController
     {
         return view('frontend.supChainService');
     }
+
+    public function careerList()
+    {
+        return view('frontend.careerList', [
+            'allJobs' => $this->careerInterface->getAllJobs()
+        ]);
+    }
+    
 
     
     

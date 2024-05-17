@@ -9,7 +9,36 @@
             </a>
         </li>
 
-        {{-- <li class="nav-item">
+       
+
+        <li class="nav-item {{ Route::is('jobs.index') ? 'active' : ''}}">
+            <a class="nav-link " href="{{ route('jobs.index')}}">
+                <i class="ri-group-fill"></i>
+                <span>Jobs</span>
+            </a>
+        </li>
+
+        <li class="nav-item ">
+            <a class="nav-link " href="#">
+                <i class="ri-group-fill"></i>
+                <span>Remunaration</span>
+            </a>
+        </li>
+
+        <li class="nav-item ">
+            <a class="nav-link " href="#">
+                <i class="ri-group-fill"></i>
+                <span>Event Mgmt</span>
+            </a>
+        </li>
+
+
+    </ul>
+
+</aside>
+
+
+ {{-- <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>Applications</span><i
                     class="bi bi-chevron-down ms-auto"></i>
@@ -40,40 +69,4 @@
                 <i class="ri-group-fill"></i>
                 <span>Members</span>
             </a>
-        </li>
-        <li class="nav-item {{ Route::is('operation-schemes.index') ? 'active' : ''}}">
-            <a class="nav-link " href="{{route('operation-schemes.index')}}">
-                <i class="ri-book-3-fill"></i>
-                <span>Operation Schemes</span>
-            </a>
         </li> --}}
-
-
-
-
-
-        <li class="nav-item ">
-            <a class="nav-link " href="#">
-                <i class="ri-group-fill"></i>
-                <span>Jobs</span>
-            </a>
-        </li>
-
-        <li class="nav-item ">
-            <a class="nav-link " href="#">
-                <i class="ri-group-fill"></i>
-                <span>Remunaration</span>
-            </a>
-        </li>
-
-        <li class="nav-item ">
-            <a class="nav-link " href="#">
-                <i class="ri-group-fill"></i>
-                <span>Event Mgmt</span>
-            </a>
-        </li>
-
-
-    </ul>
-
-</aside>

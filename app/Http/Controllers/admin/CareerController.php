@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Core\CareerInterface;
 use App\Http\Controllers\Controller;
+use App\Models\JobPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use illuminate\Support\Str;
 
 class CareerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private $careerInterface;
+    public function __construct(CareerInterface $careerInterface)
+    {
+        $this->careerInterface = $careerInterface;
+    }
     public function index()
     {
-        //
+        return view('admin.jobs.index', [
+            'allJobs' => $this->careerInterface->getAllJobs()
+        ]);
     }
 
     /**
@@ -20,7 +28,7 @@ class CareerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.jobs.create');
     }
 
     /**
@@ -28,7 +36,19 @@ class CareerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string',
+            'desc' => 'required|string|max:500',
+        ]);
+        $data = $request->only('title', 'desc');
+        $slug = Str::slug($data['title']);
+        $slug_count = DB::table('job_posts')->where('slug', $slug)->count();
+        if ($slug_count > 0) {
+            $slug = random_int(100000, 999999) . '-' . $slug;
+        }
+        $data['slug'] = $slug;
+        JobPost::create($data);
+        return redirect()->route('jobs.index')->with('msg', 'Job created successsfully');
     }
 
     /**
@@ -42,24 +62,38 @@ class CareerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        //
+        return view('admin.jobs.edit', [
+            'singleJob' => $this->careerInterface->getJob($slug)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $slug)
     {
-        //
+        $request->validate([
+            'title' => 'required|string',
+            'desc' => 'required|string|max:500',
+        ]);
+        $data = $request->only('title', 'desc');
+        JobPost::where('slug', $slug)->update($data);
+        return back()->with('msg', 'Job updated successsfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $slug)
     {
-        //
+        $job = JobPost::where('slug', $slug)->first();
+        if ($job) {
+            $job->delete();
+            return back()->with('msg', 'Job has been deleted successsfully');
+        }else{
+            return back()->with('msg', 'No Job found');
+        }
     }
 }

@@ -1,5 +1,5 @@
 @extends('admin.layout.main')
-@section('title', 'Operations Schemes | ')
+@section('title', 'All Jobs | ')
 @section('content')
     <section class="section dashboard">
         <div class="row">
@@ -8,34 +8,36 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h5 class="card-title">All Booking Type</h5>
+                        <h5 class="card-title">All Jobs</h5>
                         @if (Session::has('msg'))
                             <p class="alert alert-info">{{ Session::get('msg') }}</p>
                         @endif
-                        <a class="btn btn-sm btn-outline-success float-end" href="{{ route('booking-types.create') }}">New
-                            Type</a>
+                        <a class="btn btn-sm btn-outline-success float-end" href="{{ route('jobs.create') }}">New
+                            Job</a>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Type Name</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Created At</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 
-                                @foreach ($bookingtypes as $bookingtype)
+                                @foreach ($allJobs as $allJob)
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $bookingtype->type_name }}</td>
+                                        <td>{{ $allJob->title }}</td>
 
-                                        <td>{{ $bookingtype->price }}</td>
+                                        <td>{{ $allJob->desc }}</td>
+                                        <td>{{ $allJob->created_at }}</td>
                                         <td>
-                                            <a href="{{ route('booking-types.edit', $bookingtype->slug) }}"><i
+                                            <a href="{{ route('jobs.edit', $allJob->slug) }}"><i
                                                     class="ri-pencil-fill"></i></a>
                                             <form method="POST"
-                                                action="{{ route('booking-types.destroy', $bookingtype->slug) }}"
+                                                action="{{ route('jobs.destroy', $allJob->slug) }}"
                                                 class="d-inline-block pl-2">
                                                 @csrf
                                                 @method('DELETE')

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index'])->name('frontend.index');
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('frontend.aboutUs');
 Route::get('/career', [IndexController::class, 'career'])->name('frontend.career');
+Route::get('/career-list', [IndexController::class, 'careerList'])->name('frontend.careerList');
 Route::get('/contact', [IndexController::class, 'contact'])->name('frontend.contact');
 Route::get('/environmental-&-social-impact-assessment', [IndexController::class, 'envImpactService'])->name('frontend.envImpactService');
 Route::get('/environmental-social-due-diligence', [IndexController::class, 'envDueService'])->name('frontend.envDueService');
