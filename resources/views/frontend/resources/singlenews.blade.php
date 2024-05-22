@@ -55,6 +55,7 @@
                 <div class="col-lg-12">
                     <div id="demo-pranab">
                         <div id="owl-events" class="owl-carousel owl-theme">
+                            
                             {{-- @foreach ($news_images as $news_image)
                                 <div class="item">
                                     <img src="{{ asset('storage/' . $news_image->image) }}" class="img-fluid">
