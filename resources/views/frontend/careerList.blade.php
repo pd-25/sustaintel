@@ -26,28 +26,36 @@
                         vehicula ligula in condimentum. Donec fringilla massa sit amet nulla tempor, non gravida justo
                         porttitor.</p>
                 </div>
+                @if (Session::has('msg'))
+                    <p class="alert alert-info">{{ Session::get('msg') }}</p>
+                @endif
+                @if (Session::has('error'))
+                    <p class="alert alert-danger">{{ Session::get('error') }}</p>
+                @endif
             </div>
             <div class="row">
                 @foreach ($allJobs as $allJob)
-                <div class="col-lg-12">
-                    <div class="job-box">
-                        <h4>{{$allJob->title}}</h4>
-                        <p>{!! $allJob->desc !!}</p>
-                        <a href="#" class="banner-btn" data-toggle="modal" data-target="#exampleModal">Apply
-                            Now</a>
+                    <div class="col-lg-12">
+                        <div class="job-box">
+                            <h4>{{ $allJob->title }}</h4>
+                            <p>{!! $allJob->desc !!}</p>
+                            <a href="#" class="banner-btn" data-toggle="modal" data-target="#exampleModal"
+                                onclick="setApplyType('{{ config('core.PERMNT') }}', jobId = {{ $allJob->id }})">Apply
+                                Now</a>
 
+                        </div>
                     </div>
-                </div>  
                 @endforeach
-                
 
 
 
 
+                @include('frontend.modal.applyModal')
 
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                {{-- <div class="modal
+                                fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -121,10 +129,11 @@
 
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
 
         </div>
     </section>
 @endsection
+@include('frontend.modal.script')

@@ -54,16 +54,16 @@
                                 </div>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="solutions.html">Solutions </a><i
+                                <a href="{{route('frontend.solutions')}}">Solutions </a><i
                                     class="ion ion-ios-arrow-down menu-icon"></i>
                                 <div class="menu-subs menu-column-1">
                                     <div class="list-item text-left">
                                         <ul>
-                                            <li><a href="esg-data-management-reporting.html">ESG Data Management &
+                                            <li><a href="{{route('frontend.ecgData')}}">ESG Data Management &
                                                     Reporting</a></li>
-                                            <li><a href="environment-social-screening.html">Environment & Social
+                                            <li><a href="{{route('frontend.envScreen')}}">Environment & Social
                                                     Screening </a></li>
-                                            <li><a href="resettlement-action-plan-framework.html">Resettlement
+                                            <li><a href="{{route('frontend.resetPlan')}}">Resettlement
                                                     Action Plan Framework</a></li>
                                         </ul>
                                     </div>
@@ -74,9 +74,9 @@
                                 <div class="menu-subs menu-column-1">
                                     <div class="list-item text-left">
                                         <ul>
-                                            <li><a href="blogs.html">Blogs</a></li>
-                                            <li><a href="case-studies.html">Case Studies</a></li>
-                                            <li><a href="news-events.html">News & Events </a></li>
+                                            <li><a href="{{route('frontend.blogs')}}">Blogs</a></li>
+                                            <li><a href="{{route('frontend.caseStudy')}}">Case Studies</a></li>
+                                            <li><a href="{{route('frontend.news')}}">News & Events </a></li>
                                         </ul>
                                     </div>
                                 </div>

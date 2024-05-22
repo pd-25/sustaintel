@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Core\CareerInterface;
 use App\Http\Controllers\Controller;
+use App\Models\JobApplication;
 use App\Models\JobPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -92,6 +93,22 @@ class CareerController extends Controller
         if ($job) {
             $job->delete();
             return back()->with('msg', 'Job has been deleted successsfully');
+        }else{
+            return back()->with('msg', 'No Job found');
+        }
+    }
+
+    public function getApplication($application_type) {
+        return view('admin.applications.application', [
+            'jobapplications' => $this->careerInterface->internApplications($application_type)
+        ]);
+    }
+
+    public function deleteApplication($slug){
+        $job = JobApplication::where('slug', $slug)->first();
+        if ($job) {
+            $job->delete();
+            return back()->with('msg', 'Job applications has been deleted successsfully');
         }else{
             return back()->with('msg', 'No Job found');
         }
