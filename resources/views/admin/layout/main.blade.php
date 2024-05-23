@@ -10,31 +10,42 @@
     <meta content="" name="keywords">
 
     @include('admin.layout.partials.headdocs')
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .main {
+            flex: 1;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="wrapper">
+        @include('admin.layout.partials.header')
+        @include('admin.layout.partials.sidebar')
 
-    @include('admin.layout.partials.header')
-    @include('admin.layout.partials.sidebar')
-
-
-
-    <main id="main" class="main">
-
-
-
-        @yield('content')
-
-    </main>
-    <footer id="footer" class="footer">
-        <div class="copyright">
-            &copy; Copyright <strong><span>{{ env('APP_NAME') }}</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-
-            Designed by <a href="javascript:void(0)">Pradipta</a>
-        </div>
-    </footer>
+        <main id="main" class="main">
+            @yield('content')
+        </main>
+        <footer id="footer" class="footer">
+            <div class="copyright">
+                &copy; Copyright <strong><span>{{ env('APP_NAME') }}</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                Designed by <a href="{{env('ADMIN_DEVELOPER')}}">Pradipta</a>
+            </div>
+        </footer>
+    </div>
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
@@ -74,7 +85,7 @@
             });
         });
     </script>
-@yield('script')
+    @yield('script')
 </body>
 
 </html>

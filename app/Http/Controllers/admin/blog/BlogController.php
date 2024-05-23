@@ -56,6 +56,8 @@ class BlogController extends Controller
 
             $data['image'] = 'BlogImage/' . $blog_image;
         }
+        $data['created_at'] = now();
+
         $store = DB::table('blogs')->insert($data);
         if ($store) {
             return redirect('admin/blogs')->with('msg', 'New Blog Inserted Successfully');
