@@ -1,6 +1,13 @@
 @extends('admin.layout.main')
 @section('title', 'All Applications | ')
 @section('content')
+<style>
+    .message-column {
+        max-width: 200px; /* Adjust the width as needed */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
     <section class="section dashboard">
         <div class="row">
             <div class="col-lg-12">
@@ -23,7 +30,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Phone</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Message</th>
+                                    <th scope="col" class="message-column">Message</th>
                                     <th scope="col">Apply Dt.</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -40,7 +47,8 @@
                                         <td>{{ $jobapplication->first_name.' '.$jobapplication->last_name }}</td>
                                         <td>{{ $jobapplication->form_Phone }}</td>
                                         <td>{{ $jobapplication->form_Email }}</td>
-                                        <td>{{ $jobapplication->form_message }}</td>
+                                        <td><p class="m-0">{{ $jobapplication->form_message }}</p></td>
+                                        <td>{{ \Carbon\Carbon::parse(@$jobapplication->created_at)->format('dM, Y') }}</td>
                                         <td>
                                             <a target="_blank" href="{{ asset('storage/'.$jobapplication->fileToUpload) }}"><i
                                                     class="ri-eye-fill"></i></a>

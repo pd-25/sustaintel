@@ -24,19 +24,33 @@
 
         <div class="row mt-lg-5">
             <div class="col-lg-8">
-                <form role="form" action="" method="post" id="job-form">
+                @if (Session::has('msg'))
+                            <p class="alert alert-info">{{ Session::get('msg') }}</p>
+                        @endif
+                <form role="form" action="{{route('frontend.contactPost')}}" method="post" id="job-form">
+                    @csrf
                     <div class="controls">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <input type="text" required="required" placeholder="First Name"
                                         class="form-control" name="first_name" id="first_name">
+                                        @error('first_name')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <input type="text" required="required" placeholder="Last Name"
                                         class="form-control" name="last_name" id="last_name">
+                                        @error('last_name')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -47,6 +61,11 @@
                                 <div class="form-group">
                                     <input type="tel" required="required" placeholder="Phone"
                                         class="form-control" name="form_Phone" id="form_Phone">
+                                        @error('form_Phone')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -54,6 +73,11 @@
                                 <div class="form-group">
                                     <input type="text" required="required" placeholder="Email"
                                         class="form-control" name="form_Email" id="form_Email">
+                                        @error('form_Email')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -63,6 +87,11 @@
                                 <div class="form-group">
                                     <textarea data-error="Please,leave us a message." required="required" rows="4" placeholder="Message..."
                                         class="form-control" name="form_message" id="form_message"></textarea>
+                                        @error('form_message')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 

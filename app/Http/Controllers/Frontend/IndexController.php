@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use App\Core\BlogInterface;
 use App\Core\CareerInterface;
 use App\Http\Controllers\Controller;
+use App\Mail\ContactUsMail;
 use App\Models\CaseStudy;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class IndexController
 {
@@ -145,6 +148,24 @@ class IndexController
         return view('frontend.resources.news', [
             'newss' => News::orderByDesc('id')->get(),
         ]);
+    }
+
+    public function contactPost(Request $request) {
+        $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'form_Phone' => 'required|string',
+            'form_Email' => 'required|email',
+            'form_message' => 'required|max:1000'
+        ]);
+        $data = $request->only('first_name','last_name', 'form_Email', 'form_Phone', 'form_message');
+        try {
+            Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactUsMail($data));
+            return back()->with('msg', 'Thanks for your time..');
+        } catch (\Throwable $th) {
+            Log::debug('mailerror', [$th->getMessage()]);
+            return back()->with('msg', 'Some error occur! Please try again');
+        }
     }
 
     

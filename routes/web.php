@@ -3,6 +3,21 @@
 use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('optimize', function () {
+
+    \Artisan::call('optimize:clear');
+
+    dd("optimize is cleared");
+
+});
+
+Route::get('storage', function () {
+
+    \Artisan::call('storage:link');
+
+    dd("storage is link");
+
+});
 
 Route::get('/', [IndexController::class, 'index'])->name('frontend.index');
 Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('frontend.aboutUs');
@@ -10,6 +25,7 @@ Route::get('/career', [IndexController::class, 'career'])->name('frontend.career
 Route::get('/career-list', [IndexController::class, 'careerList'])->name('frontend.careerList');
 Route::post('/apply', [IndexController::class, 'apply'])->name('frontend.apply');
 Route::get('/contact', [IndexController::class, 'contact'])->name('frontend.contact');
+Route::post('/contact', [IndexController::class, 'contactPost'])->name('frontend.contactPost');
 Route::get('/environmental-&-social-impact-assessment', [IndexController::class, 'envImpactService'])->name('frontend.envImpactService');
 Route::get('/environmental-social-due-diligence', [IndexController::class, 'envDueService'])->name('frontend.envDueService');
 Route::get('/esms-preparation-monitoring', [IndexController::class, 'esmMonitService'])->name('frontend.esmMonitService');

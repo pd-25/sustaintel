@@ -35,7 +35,7 @@ class NewsController extends Controller
         $request->validate([
             'title' => 'string',
             'description' => 'string|max:5000',
-            'image' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'location' => 'required',
         ]);
         $data = $request->only('title', 'description', 'image', 'location');
@@ -87,9 +87,10 @@ class NewsController extends Controller
         $request->validate([
             'title' => 'string',
             'description' => 'string|max:5000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         $img = DB::table('news')->where('slug', $slug)->select('image')->first();
-        $data = $request->only('title', 'description');
+        $data = $request->only('title', 'description', 'location');
         if ($request->has('image')) {
             File::delete('storage/NewsImage/' . $img->image);
 

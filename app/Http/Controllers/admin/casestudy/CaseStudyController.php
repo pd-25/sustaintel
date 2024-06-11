@@ -38,6 +38,7 @@ class CaseStudyController extends Controller
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $mainData = $request->only('title', 'description', 'image');
@@ -97,7 +98,7 @@ class CaseStudyController extends Controller
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-            'image' => 'nullable|image', // Make image optional
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'section.*.title' => 'required|string',
             'section.*.description' => 'required|string',
         ]);
